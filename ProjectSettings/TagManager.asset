@@ -6,6 +6,7 @@ TagManager:
   tags:
   - RightRay
   - LeftRay
+  - Cassette
   layers:
   - Default
   - TransparentFX
