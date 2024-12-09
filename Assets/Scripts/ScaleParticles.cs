@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class ScaleParticleSystem : MonoBehaviour
@@ -10,24 +11,38 @@ public class ScaleParticleSystem : MonoBehaviour
     public Vector2 targetSizeRangeMinMax = new Vector2(300f, 900f);
 
     private Vector3 initialScale;
-    private float elapsedTime = 0f;
 
     void Start()
     {
         initialScale = parentObject.localScale;
         var main = particleSystem.main;
         main.startSizeX = new ParticleSystem.MinMaxCurve(startSizeRangeMinMax.x, startSizeRangeMinMax.y);
+
+        StartCoroutine(ScaleOverTime());
     }
 
-    void Update()
+    IEnumerator ScaleOverTime()
     {
-        elapsedTime += Time.deltaTime;
-        float progress = Mathf.Clamp01(elapsedTime / duration);
-        parentObject.localScale = Vector3.Lerp(initialScale, targetScale, progress);
+        float elapsedTime = 0f;
 
-        var main = particleSystem.main;
-        float newStartSizeMin = Mathf.Lerp(startSizeRangeMinMax.x, targetSizeRangeMinMax.x, progress);
-        float newStartSizeMax = Mathf.Lerp(startSizeRangeMinMax.y, targetSizeRangeMinMax.y, progress);
-        main.startSizeX = new ParticleSystem.MinMaxCurve(newStartSizeMin, newStartSizeMax);
+        while (elapsedTime < duration)
+        {
+            elapsedTime += Time.deltaTime;
+            float progress = Mathf.Clamp01(elapsedTime / duration);
+
+            parentObject.localScale = Vector3.Lerp(initialScale, targetScale, progress);
+
+            var main = particleSystem.main;
+            float newStartSizeMin = Mathf.Lerp(startSizeRangeMinMax.x, targetSizeRangeMinMax.x, progress);
+            float newStartSizeMax = Mathf.Lerp(startSizeRangeMinMax.y, targetSizeRangeMinMax.y, progress);
+            main.startSizeX = new ParticleSystem.MinMaxCurve(newStartSizeMin, newStartSizeMax);
+
+            yield return null;
+        }
+
+        parentObject.localScale = targetScale;
+        
+        var finalMain = particleSystem.main;
+        finalMain.startSizeX = new ParticleSystem.MinMaxCurve(targetSizeRangeMinMax.x, targetSizeRangeMinMax.y);
     }
 }
