@@ -1,5 +1,11 @@
 {
   "dependencies": {
+    "com.atmoky.truespatial": {
+      "version": "file:C:/Users/pisco/OneDrive/Documentos/Proyectos Unity/Recursos Unity/Librerias/atmokyTrueSpatial_Unity_v1.4.1/atmokyTrueSpatial_Unity_v1.4.1/com.atmoky.truespatial-1.4.1.tgz",
+      "depth": 0,
+      "source": "local-tarball",
+      "dependencies": {}
+    },
     "com.unity.burst": {
       "version": "1.8.11",
       "depth": 1,

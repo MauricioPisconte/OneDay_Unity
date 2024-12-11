@@ -18,10 +18,10 @@ public class ScaleParticleSystem : MonoBehaviour
         var main = particleSystem.main;
         main.startSizeX = new ParticleSystem.MinMaxCurve(startSizeRangeMinMax.x, startSizeRangeMinMax.y);
 
-        StartCoroutine(ScaleOverTime());
+        //StartCoroutine(ScaleOverTime());
     }
 
-    IEnumerator ScaleOverTime()
+    public IEnumerator ScaleOverTime()
     {
         float elapsedTime = 0f;
 

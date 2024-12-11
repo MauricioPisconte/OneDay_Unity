@@ -45,7 +45,7 @@ public class BolaDelOcho : MonoBehaviour
 
     private void Start()
     {
-        previousYPosition = transform.parent.position.y;
+        //previousYPosition = transform.parent.position.y;
     }
 
     #region Eventos de la bola

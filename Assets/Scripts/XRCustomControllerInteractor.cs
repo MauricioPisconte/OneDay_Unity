@@ -8,6 +8,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class XRCustomControllerInteractor : MonoBehaviour
 {
     private XRBaseControllerInteractor _controller;
+    private Vector3 scaleLost;
 
     private void Start()
     {
@@ -19,10 +20,12 @@ public class XRCustomControllerInteractor : MonoBehaviour
     }
     private void ParentInteractable(SelectEnterEventArgs arg0)
     {
+        scaleLost =  arg0.interactable.transform.localScale;
         arg0.interactable.transform.parent = transform;
     }
     private void Unparent(SelectExitEventArgs arg0)
     {
         arg0.interactable.transform.parent = null;
+        arg0.interactable.transform.localScale = scaleLost;
     }
 }
