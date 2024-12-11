@@ -7,6 +7,7 @@ TagManager:
   - RightRay
   - LeftRay
   - Cassette
+  - Breaker
   layers:
   - Default
   - TransparentFX
