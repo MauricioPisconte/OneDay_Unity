@@ -1,13 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class MainLevelManager : MonoBehaviour
 {
+    //public static MainLevelManager instance;
+    
     [SerializeField] private Transform playerTransform;
     [SerializeField] private MoveProviderCustom moveProvider;
     [SerializeField] private Transform[] spawnPosition;
+    [SerializeField] private Transform rigthHand;
+    [SerializeField] private Transform leftHand;
+    private LineRenderer lineRendererRight;
+    private LineRenderer lineRendererLeft;
     
     [Header("Objetos escena 1")]
     [SerializeField] private GameObject textoIntroduccion;
@@ -26,6 +34,20 @@ public class MainLevelManager : MonoBehaviour
     [SerializeField] private GameObject pantallaVolumenPS;
     [SerializeField] private ScaleParticleSystem blackHole;
     [SerializeField] private GameObject[] vhsGameObjects;
+
+    // public void Awake()
+    // {
+    //     if (instance == null)
+    //     {
+    //         instance = this;
+    //     }
+    // }
+
+    private void Start()
+    {
+        lineRendererRight = rigthHand.GetComponent<LineRenderer>();
+        lineRendererLeft = leftHand.GetComponent<LineRenderer>();
+    }
 
     //Corrutina para iniciar el juego
     public void StartGame()
@@ -82,6 +104,35 @@ public class MainLevelManager : MonoBehaviour
 
     public void TriggerCanMove(bool canMove)
     {
-        moveProvider.CanMove(canMove);   
+        if (!canMove)
+        {
+            if (rigthHand.childCount == 3)
+            {
+                Destroy(rigthHand.GetChild(2));
+            }
+            
+            if (leftHand.childCount == 3)
+            {
+                Destroy(leftHand.GetChild(2));
+            }
+        }
+        moveProvider.CanMove(canMove);
+    }
+
+    public void RestartGame()
+    {
+        audioSourceBackground.Stop();
+        
+        postProcesado.SetActive(false);
+        pantallaVolumenPS.SetActive(false);
+        
+        TriggerCanMove(false);
+        SetSpawnPosition(0);
+        Invoke("RestartScene", 4f);
+    }
+
+    private void RestartScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

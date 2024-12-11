@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class ScaleParticleSystem : MonoBehaviour
 {
@@ -12,13 +13,14 @@ public class ScaleParticleSystem : MonoBehaviour
 
     private Vector3 initialScale;
 
+    [SerializeField] private UnityEvent Fin;
+
     void Start()
     {
         initialScale = parentObject.localScale;
         var main = particleSystem.main;
         main.startSizeX = new ParticleSystem.MinMaxCurve(startSizeRangeMinMax.x, startSizeRangeMinMax.y);
-
-        //StartCoroutine(ScaleOverTime());
+        
     }
 
     public IEnumerator ScaleOverTime()
@@ -44,5 +46,6 @@ public class ScaleParticleSystem : MonoBehaviour
         
         var finalMain = particleSystem.main;
         finalMain.startSizeX = new ParticleSystem.MinMaxCurve(targetSizeRangeMinMax.x, targetSizeRangeMinMax.y);
+        Fin?.Invoke();
     }
 }
