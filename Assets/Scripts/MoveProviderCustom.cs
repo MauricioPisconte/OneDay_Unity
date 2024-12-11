@@ -37,24 +37,21 @@ public class MoveProviderCustom : ActionBasedContinuousMoveProvider
     }
 
     protected override Vector2 ReadInput()
+{
+    if (!m_CanMove)
     {
-        if (!m_CanMove)
-        {
-            isMoving = false;
-            return Vector2.zero;
-        }
-
-        Vector2 input = base.ReadInput();
-        isMoving = input != Vector2.zero;
-
-        // Invertir los ejes de entrada
-        Vector3 moveDirection = new Vector3(-input.x, 0, -input.y); // Invertimos el movimiento
-
-        // Mover al personaje con el CharacterController
-        characterController.Move(moveDirection * Time.deltaTime);
-
-        return input;
+        isMoving = false;
+        return Vector2.zero;
     }
+
+    Vector2 input = base.ReadInput();
+    isMoving = input != Vector2.zero;
+    Vector3 moveDirection = new Vector3(input.x, 0, input.y);
+    characterController.Move(moveDirection * Time.deltaTime);
+
+    return input;
+}
+
 
     private void AdjustAudioVolume()
     {
