@@ -2,12 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class MainLevelManager : MonoBehaviour
 {
-    //public static MainLevelManager instance;
+    public static MainLevelManager instance;
     
     [SerializeField] private Transform playerTransform;
     [SerializeField] private MoveProviderCustom moveProvider;
@@ -33,15 +34,14 @@ public class MainLevelManager : MonoBehaviour
     [SerializeField] private GameObject postProcesado;
     [SerializeField] private GameObject pantallaVolumenPS;
     [SerializeField] private ScaleParticleSystem blackHole;
-    [SerializeField] private GameObject[] vhsGameObjects;
 
-    // public void Awake()
-    // {
-    //     if (instance == null)
-    //     {
-    //         instance = this;
-    //     }
-    // }
+    public void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
 
     private void Start()
     {
@@ -96,11 +96,7 @@ public class MainLevelManager : MonoBehaviour
     {
         playerTransform.position = spawnPosition[indexPosition].position;
     }
-
-    public void SetVHSappearing(int vhsIndex)
-    {
-        vhsGameObjects[vhsIndex].gameObject.SetActive(true);
-    }
+    
 
     public void TriggerCanMove(bool canMove)
     {
@@ -118,6 +114,9 @@ public class MainLevelManager : MonoBehaviour
         }
         moveProvider.CanMove(canMove);
     }
+    
+    
+    //======= Funciones para reseteo de escena ==========
 
     public void RestartGame()
     {

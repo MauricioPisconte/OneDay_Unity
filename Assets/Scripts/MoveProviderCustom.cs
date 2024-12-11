@@ -19,8 +19,11 @@ public class MoveProviderCustom : ActionBasedContinuousMoveProvider
 
     private void Update()
     {
+        Debug.Log("CanMove: " + m_CanMove);
+        Debug.Log("Input: " + ReadInput());
         AdjustAudioVolume();
     }
+
 
     public void CanMove(bool verdict)
     {
