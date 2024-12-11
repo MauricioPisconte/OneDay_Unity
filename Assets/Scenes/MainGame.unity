@@ -8362,7 +8362,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76dfd6f48eafff6458a6a87817dd691d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  occlusion: 0.704
 --- !u!64 &903214612
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13918,7 +13917,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1027986249}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 9dcf2b84d527f054bb5e63991c672b97, type: 3}
@@ -14007,6 +14006,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!143 &1264856880 stripped
+CharacterController:
+  m_CorrespondingSourceObject: {fileID: 5587556845021596486, guid: 72dcd1a6fd84734458192e5ddd6d3a67, type: 3}
+  m_PrefabInstance: {fileID: 5863867827130118214}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1290488520
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15726,19 +15730,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240d865a19b2743cf8b01f4fe70c34fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rendererIndex: 0
-  receiverIndex: 100
-  occlusion: 0.3911111
-  sendLevelSrc: 0
-  sendLevel: 0
-  innerAngle: 73
-  outerAngle: 219
-  outerGain: 0.529
-  outerLowpass: 0.519
-  nfeDistance: 1
-  nfeGain: 0
-  nfeBassBoost: 0
-  isSerialized: 1
 --- !u!1 &1547814541
 GameObject:
   m_ObjectHideFlags: 0
@@ -18548,7 +18539,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76dfd6f48eafff6458a6a87817dd691d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  occlusion: 0.704
 --- !u!1 &1749156264
 GameObject:
   m_ObjectHideFlags: 0
@@ -18786,7 +18776,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76dfd6f48eafff6458a6a87817dd691d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  occlusion: 1
 --- !u!1 &1794540616
 GameObject:
   m_ObjectHideFlags: 0
@@ -27130,7 +27119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76dfd6f48eafff6458a6a87817dd691d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  occlusion: 1
 --- !u!23 &2377379758982077131
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34975,19 +34963,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 240d865a19b2743cf8b01f4fe70c34fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rendererIndex: 0
-  receiverIndex: 100
-  occlusion: 0
-  sendLevelSrc: 0
-  sendLevel: 0
-  innerAngle: 73
-  outerAngle: 219
-  outerGain: 0.529
-  outerLowpass: 0.519
-  nfeDistance: 1
-  nfeGain: 0
-  nfeBassBoost: 0
-  isSerialized: 1
 --- !u!4 &4677720866629707281
 Transform:
   m_ObjectHideFlags: 0
@@ -39934,9 +39909,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2309209341277085533, guid: 72dcd1a6fd84734458192e5ddd6d3a67, type: 3}
+      propertyPath: m_MoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2309209341277085533, guid: 72dcd1a6fd84734458192e5ddd6d3a67, type: 3}
+      propertyPath: m_UseGravity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2309209341277085533, guid: 72dcd1a6fd84734458192e5ddd6d3a67, type: 3}
+      propertyPath: characterController
+      value: 
+      objectReference: {fileID: 1264856880}
+    - target: {fileID: 2309209341277085533, guid: 72dcd1a6fd84734458192e5ddd6d3a67, type: 3}
       propertyPath: movementAudioSource
       value: 
       objectReference: {fileID: 1264856876}
+    - target: {fileID: 2309209341277085533, guid: 72dcd1a6fd84734458192e5ddd6d3a67, type: 3}
+      propertyPath: m_GravityApplicationMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5343777521006288084, guid: 72dcd1a6fd84734458192e5ddd6d3a67, type: 3}
       propertyPath: m_LocalPosition.x
       value: -271.95
@@ -43498,7 +43489,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76dfd6f48eafff6458a6a87817dd691d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  occlusion: 0.49
 --- !u!4 &7064898461971798774
 Transform:
   m_ObjectHideFlags: 0

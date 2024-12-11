@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -14,13 +15,18 @@ public class MoveProviderCustom : ActionBasedContinuousMoveProvider
     [SerializeField]
     [Tooltip("The rate at which the volume changes")]
     private float volumeChangeRate = 1f;
+    
+    public CharacterController characterController;  // Asigna tu CharacterController aquí
 
     public bool isMoving = false;
 
+    public void Start()
+    {
+        characterController = GetComponent<CharacterController>();
+    }
+
     private void Update()
     {
-        Debug.Log("CanMove: " + m_CanMove);
-        Debug.Log("Input: " + ReadInput());
         AdjustAudioVolume();
     }
 
@@ -40,6 +46,13 @@ public class MoveProviderCustom : ActionBasedContinuousMoveProvider
 
         Vector2 input = base.ReadInput();
         isMoving = input != Vector2.zero;
+
+        // Invertir los ejes de entrada
+        Vector3 moveDirection = new Vector3(-input.x, 0, -input.y); // Invertimos el movimiento
+
+        // Mover al personaje con el CharacterController
+        characterController.Move(moveDirection * Time.deltaTime);
+
         return input;
     }
 
