@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -8,57 +7,54 @@ public class MoveProviderCustom : ActionBasedContinuousMoveProvider
     [Tooltip("Determines whether the player can move")]
     private bool m_CanMove = true;
 
-    [SerializeField]
-    [Tooltip("The AudioSource that will adjust volume based on movement")]
-    private AudioSource movementAudioSource;
+    [SerializeField] private AudioSource footstepAudio;
+    [SerializeField] private float volumeIncrease = 0.1f;
+    [SerializeField] private float volumeDecrease = 0.2f;
+    [SerializeField] private float volumeChangeInterval = 0.5f;
 
-    [SerializeField]
-    [Tooltip("The rate at which the volume changes")]
-    private float volumeChangeRate = 1f;
-    
-    public CharacterController characterController;  // Asigna tu CharacterController aquí
+    [SerializeField] private bool isMoving = false;
+    private float lastVolumeChangeTime = 0f;
 
-    public bool isMoving = false;
-
-    public void Start()
+    protected void Update()
     {
-        characterController = GetComponent<CharacterController>();
+        base.Update();
+        AdjustVolume();
     }
 
-    private void Update()
+    public void CanMove(bool veredict)
     {
-        AdjustAudioVolume();
-    }
-
-
-    public void CanMove(bool verdict)
-    {
-        m_CanMove = verdict;
+        m_CanMove = veredict;
     }
 
     protected override Vector2 ReadInput()
-{
-    if (!m_CanMove)
     {
-        isMoving = false;
-        return Vector2.zero;
+        if (!m_CanMove)
+        {
+            isMoving = false;
+            return Vector2.zero;
+        }
+
+        isMoving = base.ReadInput() != Vector2.zero;
+
+        return base.ReadInput();
     }
 
-    Vector2 input = base.ReadInput();
-    isMoving = input != Vector2.zero;
-    Vector3 moveDirection = new Vector3(input.x, 0, input.y);
-    characterController.Move(moveDirection * Time.deltaTime);
-
-    return input;
-}
-
-
-    private void AdjustAudioVolume()
+    private void AdjustVolume()
     {
-        if (movementAudioSource == null)
-            return;
+        if (footstepAudio == null) return;
 
-        float targetVolume = isMoving ? 1f : 0f;
-        movementAudioSource.volume = Mathf.MoveTowards(movementAudioSource.volume, targetVolume, volumeChangeRate * Time.deltaTime);
+        if (Time.time - lastVolumeChangeTime >= volumeChangeInterval)
+        {
+            lastVolumeChangeTime = Time.time;
+
+            if (isMoving)
+            {
+                footstepAudio.volume = Mathf.Clamp(footstepAudio.volume + volumeIncrease, 0, 1);
+            }
+            else
+            {
+                footstepAudio.volume = Mathf.Clamp(footstepAudio.volume - volumeDecrease, 0, 1);
+            }
+        }
     }
 }
