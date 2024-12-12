@@ -12,7 +12,7 @@ public class MoveProviderCustom : ActionBasedContinuousMoveProvider
     [SerializeField] private float volumeDecrease = 0.2f;
     [SerializeField] private float volumeChangeInterval = 0.5f;
 
-    [SerializeField] private bool isMoving = false;
+    public bool isMoving = false;
     private float lastVolumeChangeTime = 0f;
 
     protected void Update()

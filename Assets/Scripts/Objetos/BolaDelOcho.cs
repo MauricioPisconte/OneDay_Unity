@@ -9,6 +9,7 @@ public class BolaDelOcho : MonoBehaviour
     [SerializeField] private float shakeThreshold = 0.5f;
     [SerializeField] private float shakeInterval = 0.1f;
     [SerializeField] private float shakeCooldown = 10f;
+    [SerializeField] private AudioSource audioSourceBall;
 
     [Header("Texto de la bola")]
     [SerializeField] private TextMeshProUGUI textBall;
@@ -86,7 +87,7 @@ public class BolaDelOcho : MonoBehaviour
     
     private void Update()
     {
-        if (isBeingHeld && canShake && canTriggerNextEvent && canUseMagicBall)
+        if (isBeingHeld && canShake && canTriggerNextEvent && canUseMagicBall && !transform.parent.parent.parent.GetComponent<MoveProviderCustom>().isMoving)
         {
             DetectShaking();
         }
@@ -162,6 +163,7 @@ public class BolaDelOcho : MonoBehaviour
 
         float elapsedTime = 0f;
 
+        audioSourceBall.Play();
         while (elapsedTime < timeMovement)
         {
             float newYPosition = Mathf.Lerp(initialTrianglePosition, finalTrianglePosition, elapsedTime / timeMovement);

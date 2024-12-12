@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class VoiceBox : XRBaseInteractable
+public class VoiceBox : MonoBehaviour
 {
     [SerializeField] private Material[] materials; // 0 no, 1 yes
     [SerializeField] private bool isMessageAvailable;
@@ -14,9 +14,8 @@ public class VoiceBox : XRBaseInteractable
 
     [SerializeField] private UnityEvent eventoLlamada;
 
-    protected override void Awake()
+    protected void Awake()
     {
-        base.Awake();
         meshOfMessages = GetComponent<MeshRenderer>();
         audioSource = gameObject.AddComponent<AudioSource>();
     }
@@ -27,15 +26,18 @@ public class VoiceBox : XRBaseInteractable
         isMessageAvailable = veredict;
     }
 
-    protected override void OnSelectEntered(SelectEnterEventArgs args)
+    private void OnTriggerEnter(Collider col)
     {
         Debug.Log("Hola mundo");
-        if (isMessageAvailable)
+
+        if (col.CompareTag("Player"))
         {
-            base.OnSelectEntered(args);
-            ChangeStateOfMessages(false);
-            audioSource.Play();
-            Invoke("CallToActionEvent", audioSource.clip.length);
+            if (isMessageAvailable)
+            {
+                ChangeStateOfMessages(false);
+                audioSource.Play();
+                Invoke("CallToActionEvent", audioSource.clip.length);
+            }
         }
     }
 

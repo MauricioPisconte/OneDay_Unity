@@ -44,7 +44,7 @@ public class DuchaManija : MonoBehaviour
         if (angleX > 180f) angleX -= 360f;
 
         // Comprobar si el giro es en sentido de las manecillas del reloj y alcanza los 180 grados
-        if (angleX >= 180f && Mathf.Sign(relativeRotation.eulerAngles.y) == 1)
+        if (angleX >= 180f && Mathf.Sign(relativeRotation.eulerAngles.x) == 1)
         {
             hasRotated180 = true;
             OnRotationComplete();
