@@ -13,6 +13,8 @@ public class XRTagLimitedSocketInteractor : XRSocketInteractor
     public UnityEvent eventoAudio;
     public AudioSource audioSourceClip;
 
+    [SerializeField] private bool introVHS;
+
     // Método para verificar si el objeto se puede seleccionar
     public override bool CanSelect(XRBaseInteractable interactable)
     {
@@ -45,7 +47,7 @@ public class XRTagLimitedSocketInteractor : XRSocketInteractor
             grabInteractable.interactionLayerMask = LayerMask.GetMask("None");
         }
 
-        StartCoroutine(ReproducirAudioConEvento());
+        if(introVHS) StartCoroutine(ReproducirIntro());
     }
 
     protected override void OnSelectExited(XRBaseInteractable interactable)
@@ -73,7 +75,7 @@ public class XRTagLimitedSocketInteractor : XRSocketInteractor
     //El script tmb detecta si el cassette es el indicado en base a su ID.
 
 
-    private IEnumerator ReproducirAudioConEvento()
+    private IEnumerator ReproducirIntro()
     {
         if (audioSourceClip != null)
         {

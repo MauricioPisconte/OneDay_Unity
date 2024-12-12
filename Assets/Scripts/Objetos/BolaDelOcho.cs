@@ -16,6 +16,9 @@ public class BolaDelOcho : MonoBehaviour
     [SerializeField] private float initialTrianglePosition = 0.24f;
     [SerializeField] private float finalTrianglePosition = 0.265f;
 
+    [Header("Checkear si esta disponible para su uso")]
+    public bool canUseMagicBall;
+    
     [System.Serializable]
     public struct Eventos
     {
@@ -76,9 +79,14 @@ public class BolaDelOcho : MonoBehaviour
 
     #endregion
 
+    public void AllowItsUse(bool veredict)
+    {
+        canUseMagicBall = veredict;
+    }
+    
     private void Update()
     {
-        if (isBeingHeld && canShake && canTriggerNextEvent)
+        if (isBeingHeld && canShake && canTriggerNextEvent && canUseMagicBall)
         {
             DetectShaking();
         }

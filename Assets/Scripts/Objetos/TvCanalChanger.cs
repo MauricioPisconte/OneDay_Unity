@@ -11,7 +11,7 @@ public class TvCanalChanger : MonoBehaviour
     [SerializeField] private AudioClip[] sonidosCanales;
     [SerializeField] private MeshRenderer pantallaMat;
     [SerializeField] private float changingChannelDelay;
-    [SerializeField] private UnityEvent ExecuteAction;
+    [SerializeField] private UnityEvent[] ExecuteAction;
     
     private int indexMaterial;
     private AudioSource audioSource;
@@ -44,6 +44,6 @@ public class TvCanalChanger : MonoBehaviour
         yield return new WaitForSeconds(sonidosCanales[finalCanal].length);
         ChangeCanal(initialCanal);
         yield return new WaitForSeconds(changingChannelDelay);
-        ExecuteAction?.Invoke();
+        ExecuteAction[finalCanal]?.Invoke();
     }
 }

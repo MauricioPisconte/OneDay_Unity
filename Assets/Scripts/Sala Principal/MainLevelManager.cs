@@ -15,8 +15,6 @@ public class MainLevelManager : MonoBehaviour
     [SerializeField] private Transform[] spawnPosition;
     [SerializeField] private Transform rigthHand;
     [SerializeField] private Transform leftHand;
-    private LineRenderer lineRendererRight;
-    private LineRenderer lineRendererLeft;
     
     [Header("Objetos escena 1")]
     [SerializeField] private GameObject textoIntroduccion;
@@ -41,12 +39,13 @@ public class MainLevelManager : MonoBehaviour
         {
             instance = this;
         }
+        
+        Application.targetFrameRate = 60;
     }
 
     private void Start()
     {
-        lineRendererRight = rigthHand.GetComponent<LineRenderer>();
-        lineRendererLeft = leftHand.GetComponent<LineRenderer>();
+        
     }
 
     //Corrutina para iniciar el juego
@@ -61,6 +60,8 @@ public class MainLevelManager : MonoBehaviour
         
         yield return new WaitForSeconds(puertaHabitacion.clip.length);
         
+        rigthHand.gameObject.SetActive(false);
+        leftHand.gameObject.SetActive(false);
         TriggerCanMove(false);
         SetSpawnPosition(0);
         audioSourceBackground.clip = musicaIntroduccion;
@@ -90,6 +91,8 @@ public class MainLevelManager : MonoBehaviour
 
         SetSpawnPosition(1);
         TriggerCanMove(true);
+        rigthHand.gameObject.SetActive(true); 
+        leftHand.gameObject.SetActive(true);
     }
     
     public void SetSpawnPosition(int indexPosition)
