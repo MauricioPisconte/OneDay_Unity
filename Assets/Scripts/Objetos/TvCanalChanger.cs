@@ -14,11 +14,10 @@ public class TvCanalChanger : MonoBehaviour
     [SerializeField] private UnityEvent[] ExecuteAction;
     
     private int indexMaterial;
-    private AudioSource audioSource;
+    [SerializeField] private AudioSource audioSource;
 
     public void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         indexMaterial = canales.Length - 1;
     }
     
@@ -32,6 +31,7 @@ public class TvCanalChanger : MonoBehaviour
 
     public void ChangeCanalTemporaly(int canal)
     {
+        Debug.Log("AAA");
         StartCoroutine(ChanginForWhile(indexMaterial, canal));
     }
 

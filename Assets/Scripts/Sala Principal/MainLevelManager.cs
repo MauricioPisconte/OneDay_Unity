@@ -9,6 +9,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class MainLevelManager : MonoBehaviour
 {
     public static MainLevelManager instance;
+    private bool gameStarted = false;
     
     [SerializeField] private Transform playerTransform;
     [SerializeField] private MoveProviderCustom moveProvider;
@@ -51,7 +52,11 @@ public class MainLevelManager : MonoBehaviour
     //Corrutina para iniciar el juego
     public void StartGame()
     {
-        StartCoroutine(GoToTitleScreen());
+        if (!gameStarted)
+        {
+            gameStarted = true;
+            StartCoroutine(GoToTitleScreen());
+        }
     }
 
     private IEnumerator GoToTitleScreen()
@@ -59,6 +64,8 @@ public class MainLevelManager : MonoBehaviour
         puertaHabitacion.Play();
         
         yield return new WaitForSeconds(puertaHabitacion.clip.length);
+
+        DeleteChildObjectsInHands();
         
         rigthHand.gameObject.SetActive(false);
         leftHand.gameObject.SetActive(false);
@@ -103,18 +110,6 @@ public class MainLevelManager : MonoBehaviour
 
     public void TriggerCanMove(bool canMove)
     {
-        if (!canMove)
-        {
-            if (rigthHand.childCount == 3)
-            {
-                Destroy(rigthHand.GetChild(2));
-            }
-            
-            if (leftHand.childCount == 3)
-            {
-                Destroy(leftHand.GetChild(2));
-            }
-        }
         moveProvider.CanMove(canMove);
     }
     
@@ -136,5 +131,18 @@ public class MainLevelManager : MonoBehaviour
     private void RestartScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private void DeleteChildObjectsInHands()
+    {
+        if (rigthHand.childCount == 3)
+        {
+            Destroy(rigthHand.GetChild(2));
+        }
+            
+        if (leftHand.childCount == 3)
+        {
+            Destroy(leftHand.GetChild(2));
+        }
     }
 }

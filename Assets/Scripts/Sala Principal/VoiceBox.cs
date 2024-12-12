@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class VoiceBox : XRSimpleInteractable
+public class VoiceBox : XRBaseInteractable
 {
     [SerializeField] private Material[] materials; // 0 no, 1 yes
     [SerializeField] private bool isMessageAvailable;
@@ -29,6 +29,7 @@ public class VoiceBox : XRSimpleInteractable
 
     protected override void OnSelectEntered(SelectEnterEventArgs args)
     {
+        Debug.Log("Hola mundo");
         if (isMessageAvailable)
         {
             base.OnSelectEntered(args);
