@@ -464,7 +464,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rendererIndex: 0
   receiverIndex: 0
-  occlusion: 0.467
+  occlusion: 0.934
   sendLevelSrc: 0
   sendLevel: 0
   innerAngle: 90
@@ -599,13 +599,13 @@ MonoBehaviour:
   - position: {x: 10.55, y: -12, z: -10.84}
     occlusion: 0.934
   - position: {x: 9.87, y: 10.38, z: 20.35}
-    occlusion: 0
+    occlusion: 0.934
   - position: {x: -6.88, y: -4.79, z: 20.35}
-    occlusion: 0
+    occlusion: 0.934
   - position: {x: 8.77, y: -4.15, z: 20.35}
-    occlusion: 0
+    occlusion: 0.934
   - position: {x: -6.56, y: 11.32, z: 20.35}
-    occlusion: 0
+    occlusion: 0.934
   occlusionSensitivity: 50
 --- !u!1 &49544336
 GameObject:
@@ -11027,7 +11027,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rendererIndex: 0
   receiverIndex: 0
-  occlusion: 1
+  occlusion: 0
   sendLevelSrc: 0
   sendLevel: 0
   innerAngle: 90
@@ -11079,21 +11079,21 @@ MonoBehaviour:
     m_Bits: 4294967295
   probes:
   - position: {x: 1, y: 1, z: 1}
-    occlusion: 1
+    occlusion: 0
   - position: {x: -1, y: 1, z: 1}
-    occlusion: 1
+    occlusion: 0
   - position: {x: 1, y: -0.09, z: 1}
-    occlusion: 1
+    occlusion: 0
   - position: {x: -1, y: 0.21, z: 1}
-    occlusion: 1
+    occlusion: 0
   - position: {x: 1, y: 1, z: -1}
-    occlusion: 1
+    occlusion: 0
   - position: {x: -1, y: 1, z: -1}
-    occlusion: 1
+    occlusion: 0
   - position: {x: 1, y: 0.09, z: -1}
-    occlusion: 1
+    occlusion: 0
   - position: {x: -1, y: 0.06, z: -1}
-    occlusion: 1
+    occlusion: 0
   occlusionSensitivity: 50
 --- !u!65 &908651567
 BoxCollider:
@@ -12748,7 +12748,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: adbe468f408ba344e854138845db4139, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: adbe468f408ba344e854138845db4139, type: 3}
       propertyPath: m_TagString
@@ -16607,7 +16607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rendererIndex: 0
   receiverIndex: 0
-  occlusion: 0.7
+  occlusion: 0.2055
   sendLevelSrc: 0
   sendLevel: 0
   innerAngle: 90
@@ -16734,21 +16734,21 @@ MonoBehaviour:
     m_Bits: 4294967295
   probes:
   - position: {x: 1, y: 0.75, z: 1}
-    occlusion: 0
+    occlusion: 0.811
   - position: {x: -1, y: 0.92, z: 1}
-    occlusion: 1
+    occlusion: 0.833
   - position: {x: 1, y: -1, z: 1}
     occlusion: 0
   - position: {x: -1, y: -1, z: 1}
-    occlusion: 0.934
+    occlusion: 0
   - position: {x: 1, y: 0.83, z: -1}
-    occlusion: 0.833
+    occlusion: 0
   - position: {x: -1, y: 0.82, z: -1}
-    occlusion: 1
+    occlusion: 0
   - position: {x: 1, y: -1, z: -1}
-    occlusion: 0.833
+    occlusion: 0
   - position: {x: -1, y: -1, z: -1}
-    occlusion: 1
+    occlusion: 0
   occlusionSensitivity: 50
 --- !u!1 &1521598662
 GameObject:
@@ -19762,8 +19762,7 @@ Transform:
   m_LocalPosition: {x: -263, y: 6, z: 22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1264856869}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1726142175
@@ -21105,21 +21104,21 @@ MonoBehaviour:
     m_Bits: 4294967295
   probes:
   - position: {x: 11.21, y: 11.37, z: -6.94}
-    occlusion: 1
+    occlusion: 0
   - position: {x: -13.22, y: 9.62, z: -5.01}
-    occlusion: 0.833
+    occlusion: 0
   - position: {x: -13.56, y: -10.04, z: -7.73}
-    occlusion: 0.833
+    occlusion: 0
   - position: {x: 10.55, y: -12, z: -10.84}
-    occlusion: 1
+    occlusion: 0
   - position: {x: 9.87, y: 10.38, z: 20.35}
-    occlusion: 1
+    occlusion: 0
   - position: {x: -6.88, y: -4.79, z: 20.35}
-    occlusion: 0.833
+    occlusion: 0
   - position: {x: 8.77, y: -4.15, z: 20.35}
-    occlusion: 1
+    occlusion: 0
   - position: {x: -6.56, y: 11.32, z: 20.35}
-    occlusion: 0.833
+    occlusion: 0
   occlusionSensitivity: 50
 --- !u!114 &1989734327
 MonoBehaviour:
@@ -21135,7 +21134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rendererIndex: 0
   receiverIndex: 0
-  occlusion: 0.91650003
+  occlusion: 0
   sendLevelSrc: 0
   sendLevel: 0
   innerAngle: 90
@@ -41852,7 +41851,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1726142174}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 492229610942054630, guid: 72dcd1a6fd84734458192e5ddd6d3a67, type: 3}
       propertyPath: m_IsActive
@@ -41912,15 +41911,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5343777521006288084, guid: 72dcd1a6fd84734458192e5ddd6d3a67, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.65
+      value: -271.65
       objectReference: {fileID: 0}
     - target: {fileID: 5343777521006288084, guid: 72dcd1a6fd84734458192e5ddd6d3a67, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.99
+      value: 7.99
       objectReference: {fileID: 0}
     - target: {fileID: 5343777521006288084, guid: 72dcd1a6fd84734458192e5ddd6d3a67, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 5343777521006288084, guid: 72dcd1a6fd84734458192e5ddd6d3a67, type: 3}
       propertyPath: m_LocalRotation.w
@@ -52473,6 +52472,7 @@ SceneRoots:
   - {fileID: 963194228}
   - {fileID: 705507995}
   - {fileID: 421478169}
+  - {fileID: 5863867827130118214}
   - {fileID: 61188599}
   - {fileID: 977778943}
   - {fileID: 770715287}
