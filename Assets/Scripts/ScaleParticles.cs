@@ -10,6 +10,8 @@ public class ScaleParticleSystem : MonoBehaviour
     public Vector3 targetScale = new Vector3(100f, 100f, 100f);
     public Vector2 startSizeRangeMinMax = new Vector2(3f, 9f);
     public Vector2 targetSizeRangeMinMax = new Vector2(300f, 900f);
+    public AudioSource audioSourceBack;
+    public float finalVolumeAudio;
 
     private Vector3 initialScale;
 
@@ -31,14 +33,16 @@ public class ScaleParticleSystem : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
             float progress = Mathf.Clamp01(elapsedTime / duration);
-
+            
             parentObject.localScale = Vector3.Lerp(initialScale, targetScale, progress);
-
+            
             var main = particleSystem.main;
             float newStartSizeMin = Mathf.Lerp(startSizeRangeMinMax.x, targetSizeRangeMinMax.x, progress);
             float newStartSizeMax = Mathf.Lerp(startSizeRangeMinMax.y, targetSizeRangeMinMax.y, progress);
             main.startSizeX = new ParticleSystem.MinMaxCurve(newStartSizeMin, newStartSizeMax);
 
+            audioSourceBack.volume = Mathf.Lerp(0f, finalVolumeAudio, progress);;
+            
             yield return null;
         }
 
