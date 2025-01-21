@@ -205,9 +205,11 @@ public static class PointComputation
     private const string dllName = "IndirectPredicates_Mac";
     #elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
     private const string dllName = "IndirectPredicates_Windows";
-    #endif
+#else
+    private const string dllName = "IndirectPredicates_Android"; // Temporal para evitar errores
+#endif
 
-    [System.Runtime.InteropServices.DllImport(dllName)]
+        [System.Runtime.InteropServices.DllImport(dllName)]
     private static extern void Initialize();
     [System.Runtime.InteropServices.DllImport(dllName)]
     private static extern void Reset();

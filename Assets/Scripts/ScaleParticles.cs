@@ -22,34 +22,70 @@ public class ScaleParticleSystem : MonoBehaviour
         initialScale = parentObject.localScale;
         var main = particleSystem.main;
         main.startSizeX = new ParticleSystem.MinMaxCurve(startSizeRangeMinMax.x, startSizeRangeMinMax.y);
+        //StartCoroutine(ScaleOverTime());
         
     }
 
+    //public IEnumerator ScaleOverTime()
+    //{
+    //    float elapsedTime = 0f;
+
+    //    while (elapsedTime < duration)
+    //    {
+    //        elapsedTime += Time.deltaTime;
+    //        float progress = Mathf.Clamp01(elapsedTime / duration);
+
+    //        parentObject.localScale = Vector3.Lerp(initialScale, targetScale, progress);
+
+    //        var main = particleSystem.main;
+    //        float newStartSizeMin = Mathf.Lerp(startSizeRangeMinMax.x, targetSizeRangeMinMax.x, progress);
+    //        float newStartSizeMax = Mathf.Lerp(startSizeRangeMinMax.y, targetSizeRangeMinMax.y, progress);
+    //        main.startSizeX = new ParticleSystem.MinMaxCurve(newStartSizeMin, newStartSizeMax);
+
+    //        audioSourceBack.volume = Mathf.Lerp(0f, finalVolumeAudio, progress);;
+
+    //        yield return null;
+    //    }
+
+    //    parentObject.localScale = targetScale;
+
+    //    var finalMain = particleSystem.main;
+    //    finalMain.startSizeX = new ParticleSystem.MinMaxCurve(targetSizeRangeMinMax.x, targetSizeRangeMinMax.y);
+    //    Fin?.Invoke();
+    //}
+
     public IEnumerator ScaleOverTime()
     {
-        float elapsedTime = 0f;
+        float startTime = Time.time;
+        float endTime = startTime + duration;
 
-        while (elapsedTime < duration)
+        while (Time.time < endTime)
         {
-            elapsedTime += Time.deltaTime;
+            float elapsedTime = Time.time - startTime;
             float progress = Mathf.Clamp01(elapsedTime / duration);
-            
+
+            // Escalado lineal para el objeto
             parentObject.localScale = Vector3.Lerp(initialScale, targetScale, progress);
-            
+
+            // Escalado de partículas
             var main = particleSystem.main;
             float newStartSizeMin = Mathf.Lerp(startSizeRangeMinMax.x, targetSizeRangeMinMax.x, progress);
             float newStartSizeMax = Mathf.Lerp(startSizeRangeMinMax.y, targetSizeRangeMinMax.y, progress);
             main.startSizeX = new ParticleSystem.MinMaxCurve(newStartSizeMin, newStartSizeMax);
 
-            audioSourceBack.volume = Mathf.Lerp(0f, finalVolumeAudio, progress);;
-            
+            // Ajuste de volumen
+            audioSourceBack.volume = Mathf.Lerp(0f, finalVolumeAudio, progress);
+
             yield return null;
         }
 
+        // Asegúrate de que los valores finales sean exactos
         parentObject.localScale = targetScale;
-        
+
         var finalMain = particleSystem.main;
         finalMain.startSizeX = new ParticleSystem.MinMaxCurve(targetSizeRangeMinMax.x, targetSizeRangeMinMax.y);
+
         Fin?.Invoke();
     }
+
 }

@@ -16,13 +16,12 @@ namespace Hanzzz.MeshDemolisher
         [SerializeField] private AudioSource audioSource;
         
         private static MeshDemolisher meshDemolisher = new MeshDemolisher();
-        
 
         public void Demolish()
         {
-            audioSource.Play();
+            Debug.Log("hola mundo");
+            audioSource?.Play();
             
-            // Limpiar los resultados anteriores
             Enumerable.Range(0, resultParent.childCount)
                       .Select(i => resultParent.GetChild(i))
                       .ToList()
